@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root Variables */
+:root {
+  --saffron: #ff7d1f;
+  --golden: #ffad1f;
+  --cream: #faf6ed;
+  --peach: #ffb08a;
+  --warm-white: #fffdf9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fffdf9;
+  color: #374151;
+}
+
+/* Headings */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+
+  /* Text Gradients */
+  .text-gradient-saffron {
+    background: linear-gradient(135deg, #ff7d1f, #ffad1f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #c74a00, #ff7d1f, #ffad1f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass Effects */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 125, 31, 0.08);
+    box-shadow: 0 10px 35px rgba(255, 125, 31, 0.08);
+  }
+
+  .glass-navbar {
+    background: rgba(255, 253, 249, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 125, 31, 0.08);
+  }
+
+  /* Layout */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 
+    bg-gradient-to-r from-orange-500 to-amber-400 
+    text-white font-semibold 
+    px-8 py-4 rounded-2xl 
+    transition-all duration-300 
+    hover:scale-105 hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 
+    border border-orange-300 
+    bg-white/80 backdrop-blur-md 
+    text-gray-800 font-semibold 
+    px-8 py-4 rounded-2xl 
+    transition-all duration-300 
+    hover:bg-orange-50 hover:scale-105;
+  }
+
+  /* Cards */
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-2;
+  }
+
+  /* Section Badge */
+  .section-badge {
+    @apply inline-flex items-center gap-2 
+    bg-orange-50 border border-orange-200 
+    text-orange-600 text-sm font-semibold 
+    px-4 py-2 rounded-full;
+  }
+
+  /* Shimmer */
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      #f5ecd9 25%,
+      #faf6ed 50%,
+      #f5ecd9 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf6ed;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff9c45;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff7d1f;
+}
+
+/* Text Selection */
+::selection {
+  background: #ffeed4;
+  color: #c74a00;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Float Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 4s ease-in-out 1.5s infinite;
+}
+
+/* Slow Background Zoom */
+@keyframes slowZoom {
+  0% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-slow-zoom {
+  animation: slowZoom 20s ease-in-out infinite;
+}
+
+/* Ornament Divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #ff9c45;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ff9c45);
+}
+
+.ornament-divider::after {
+  background: linear-gradient(to left, transparent, #ff9c45);
+}
+
+/* WhatsApp Pulse */
+.whatsapp-btn-pulse {
+  animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+
+/* Hero Overlay Blur */
+.hero-blur {
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 184, 108, 0.35),
+    transparent 50%
+  );
+}
+
+/* Image Smooth Hover */
+.image-hover {
+  transition: transform 0.6s ease;
+}
+
+.image-hover:hover {
+  transform: scale(1.08);
+}
+
+/* Navbar Active Link */
+.nav-active {
+  color: #ff7d1f;
+  position: relative;
+}
+
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff7d1f;
+  border-radius: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-padding {
+    @apply py-16;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    @apply px-6 py-3 text-sm;
+  }
+}
