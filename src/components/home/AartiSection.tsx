@@ -20,7 +20,7 @@ export default function AartiSection() {
                 className="absolute top-0 left-0 w-4/5 h-72 rounded-3xl overflow-hidden shadow-card-hover"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1571016862988-b0a85fd7d6e6?w=800&q=80"
+                  src="/gangaaarti.png"
                   alt="Ganga Aarti Ceremony"
                   fill
                   className="object-cover"
@@ -32,7 +32,7 @@ export default function AartiSection() {
                 className="absolute bottom-0 right-0 w-3/5 h-64 rounded-3xl overflow-hidden shadow-card-hover border-4 border-white"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80"
+                  src="/gangaaarti1.jpg"
                   alt="Evening Aarti at Varanasi Ghat"
                   fill
                   className="object-cover"

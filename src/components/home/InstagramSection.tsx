@@ -6,12 +6,12 @@ import { FadeIn } from '../AnimatedSection'
 import { motion } from 'framer-motion'
 
 const instaImages = [
-  'https://images.unsplash.com/photo-1561361058-c24e019e4c3e?w=400&q=80',
-  'https://images.unsplash.com/photo-1571016862988-b0a85fd7d6e6?w=400&q=80',
-  'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80',
-  'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&q=80',
-  'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=400&q=80',
-  'https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?w=400&q=80',
+  '/gangaaarti.png',
+  '/bhucampus.png',
+  '/durgamandir.png',
+  '/kashi1.png',
+  '/shrikaalbhairav.png',
+  '/musicalboat.png',
 ]
 
 export default function InstagramSection() {
