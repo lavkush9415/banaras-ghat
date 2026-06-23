@@ -6,7 +6,7 @@ import { FadeIn, StaggerChildren } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
 export const metadata: Metadata = {
-  title: 'Boat Rides | Banaras Ghat — Ganga River Boat Tours Varanasi',
+  title: 'Boat Rides | Heritage Tour & Travels — Ganga River Boat Tours Varanasi',
   description: 'Book sunrise boat rides, Ganga Aarti evening rides, and private luxury cruises on the sacred Ganga river in Varanasi.',
 }
 

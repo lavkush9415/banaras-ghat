@@ -6,7 +6,7 @@ import { FadeIn, StaggerChildren } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
 export const metadata: Metadata = {
-  title: 'Cab Services | Banaras Ghat — Airport Transfer & Sightseeing Cabs',
+  title: 'Cab Services | Heritage Tour & Travels — Airport Transfer & Sightseeing Cabs',
   description: 'Book reliable, safe, and comfortable cab services in Varanasi — airport transfers, city sightseeing, and outstation trips.',
 }
 

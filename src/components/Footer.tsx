@@ -17,7 +17,7 @@ export default function Footer() {
                 <span className="text-white text-xl">🪔</span>
               </div>
               <div>
-                <div className="font-playfair font-bold text-xl text-gray-800">Banaras Ghat</div>
+                <div className="font-playfair font-bold text-xl text-gray-800">Heritage Tour & Travels</div>
                 <div className="text-xs text-saffron-500 font-semibold tracking-widest uppercase">Spiritual Travel</div>
               </div>
             </Link>
@@ -120,7 +120,7 @@ export default function Footer() {
       <div className="border-t border-cream-200 py-5">
         <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Banaras Ghat. All rights reserved. Crafted with 🧡 in Varanasi.
+            © {new Date().getFullYear()} Heritage Tour & Travels. All rights reserved. Crafted with 🧡 in Varanasi.
           </p>
           <div className="flex items-center gap-4 text-xs text-gray-400">
             <Link href="#" className="hover:text-saffron-500 transition-colors">Privacy Policy</Link>

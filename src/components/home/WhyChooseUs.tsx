@@ -17,7 +17,7 @@ export default function WhyChooseUs() {
     <section className="section-padding bg-gradient-to-br from-saffron-50 via-white to-golden-50">
       <div className="container-custom">
         <FadeIn className="text-center mb-14">
-          <span className="section-badge mb-4"><span>✨</span> Why Banaras Ghat</span>
+          <span className="section-badge mb-4"><span>✨</span> Why Heritage Tour & Travels</span>
           <h2 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mt-3">
             Why <span className="text-gradient-saffron">5000+ Travelers</span> Trust Us
           </h2>

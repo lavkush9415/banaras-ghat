@@ -6,8 +6,8 @@ import { FadeIn, StaggerChildren } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
 export const metadata: Metadata = {
-  title: 'About Us | Banaras Ghat — Your Varanasi Travel Partner',
-  description: 'Learn about Banaras Ghat — a decade of curating authentic, spiritual, and luxury travel experiences in the sacred city of Varanasi.',
+  title: 'About Us | Heritage Tour & Travels — Your Varanasi Travel Partner',
+  description: 'Learn about Heritage Tour & Travels — a decade of curating authentic, spiritual, and luxury travel experiences in the sacred city of Varanasi.',
 }
 
 const team = [
@@ -38,7 +38,7 @@ export default function AboutPage() {
               <span className="text-gradient-saffron italic">Sacred Memories</span>
             </h1>
             <p className="text-gray-500 text-lg leading-relaxed">
-              Born from a deep love for Banaras and its timeless soul, Banaras Ghat was founded with one mission: to share the magic of Varanasi with the world — authentically, responsibly, and beautifully.
+              Born from a deep love for Banaras and its timeless soul, Heritage Tour & Travels was founded with one mission: to share the magic of Varanasi with the world — authentically, responsibly, and beautifully.
             </p>
           </FadeIn>
         </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 From Ghat to <span className="text-gradient-saffron">Glory</span>
               </h2>
               <p className="text-gray-500 leading-relaxed mb-4">
-                Founded in 2014 by Rajesh Kumar Singh — a native Banarasi and passionate travel enthusiast — Banaras Ghat started as a small boat tour service at Dashashwamedh Ghat. What began with two boats and a dream has grown into Varanasi&apos;s most trusted multi-service travel company.
+                Founded in 2014 by Rajesh Kumar Singh — a native Banarasi and passionate travel enthusiast — Heritage Tour & Travels started as a small boat tour service at Dashashwamedh Ghat. What began with two boats and a dream has grown into Varanasi&apos;s most trusted multi-service travel company.
               </p>
               <p className="text-gray-500 leading-relaxed mb-6">
                 Today, we serve 5,000+ travelers annually with a comprehensive portfolio including tour packages, luxury boat rides, hotel bookings, cab services, and photography tours. Every experience we offer is infused with our deep respect for Banaras&apos;s spiritual heritage.

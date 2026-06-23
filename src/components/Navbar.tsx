@@ -35,10 +35,10 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-playfair font-bold text-lg text-gray-800 group-hover:text-saffron-600 transition-colors">
-                  Banaras
+                  Heritage
                 </span>
                 <span className="text-xs font-semibold text-saffron-500 tracking-widest uppercase">
-                  Ghat
+                  Tour & Travels
                 </span>
               </div>
             </Link>
@@ -122,7 +122,7 @@ export default function Navbar() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-saffron-400 to-golden-500 flex items-center justify-center">
                     <span className="text-white text-base">🪔</span>
                   </div>
-                  <span className="font-playfair font-bold text-gray-800">Banaras Ghat</span>
+                  <span className="font-playfair font-bold text-gray-800">Heritage Tour & Travels</span>
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}

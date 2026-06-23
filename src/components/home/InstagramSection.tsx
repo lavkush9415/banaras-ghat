@@ -24,7 +24,7 @@ export default function InstagramSection() {
               <Instagram size={20} className="text-white" />
             </div>
             <h2 className="font-playfair text-3xl font-bold text-gray-800">
-              Follow <span className="text-gradient-saffron">@BanarasGhat</span>
+              Follow <span className="text-gradient-saffron">@HeritageTourTravels</span>
             </h2>
           </div>
           <p className="text-gray-500">

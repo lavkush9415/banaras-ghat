@@ -6,8 +6,8 @@ import { FadeIn, StaggerChildren } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
 export const metadata: Metadata = {
-  title: 'Hotels | Banaras Ghat — Varanasi Hotel Bookings',
-  description: 'Book luxury heritage hotels, premium boutique stays, and budget accommodations in Varanasi through Banaras Ghat.',
+  title: 'Hotels | Heritage Tour & Travels — Varanasi Hotel Bookings',
+  description: 'Book luxury heritage hotels, premium boutique stays, and budget accommodations in Varanasi through Heritage Tour & Travels.',
 }
 
 const categories = ['All', 'Luxury', 'Premium', 'Budget']

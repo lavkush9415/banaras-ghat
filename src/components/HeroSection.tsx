@@ -16,7 +16,7 @@ export default function HeroSection() {
 
         <Image
           src="/bg.jpg"
-          alt="Banaras Ghat"
+          alt="Heritage Tour & Travels"
           fill
           priority
           quality={100}

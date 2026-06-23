@@ -5,8 +5,8 @@ import CallbackForm from '@/components/CallbackForm'
 import { WHATSAPP_URL } from '@/data/data'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Banaras Ghat — Get in Touch',
-  description: 'Contact Banaras Ghat for tour bookings, hotel reservations, and travel inquiries. We respond within 30 minutes.',
+  title: 'Contact Us | Heritage Tour & Travels — Get in Touch',
+  description: 'Contact Heritage Tour & Travels for tour bookings, hotel reservations, and travel inquiries. We respond within 30 minutes.',
 }
 
 const contactInfo = [

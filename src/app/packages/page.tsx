@@ -5,7 +5,7 @@ import { FadeIn } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
 export const metadata: Metadata = {
-  title: 'Tour Packages | Banaras Ghat — Varanasi Travel Packages',
+  title: 'Tour Packages | Heritage Tour & Travels — Varanasi Travel Packages',
   description: 'Choose from 150+ curated Varanasi tour packages — spiritual tours, luxury experiences, honeymoon packages, and family trips.',
 }
 
