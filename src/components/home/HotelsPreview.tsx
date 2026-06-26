@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Star, MapPin, Wifi, ArrowRight } from 'lucide-react'
-import { hotels, WHATSAPP_URL } from '@/data/data'
+import { Star, MapPin, ArrowRight } from 'lucide-react'
+import { hotels } from '@/data/data'
 import { FadeIn, StaggerChildren, childVariants } from '../AnimatedSection'
 
 const categoryColors: Record<string, string> = {
@@ -77,14 +77,12 @@ export default function HotelsPreview() {
                     <span className="text-lg font-bold text-saffron-600">₹{hotel.pricePerNight.toLocaleString()}</span>
                     <span className="text-xs text-gray-400 ml-1">/night</span>
                   </div>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs bg-gradient-to-r from-saffron-500 to-golden-500 text-white px-3.5 py-2 rounded-xl font-semibold hover:shadow-warm transition-all"
+                  <Link
+                    href={`/hotels/${hotel.slug}`}
+                    className="text-xs bg-gradient-to-r from-saffron-500 to-golden-500 text-white px-3.5 py-2 rounded-xl font-semibold hover:shadow-warm transition-all hover:scale-105 inline-flex items-center gap-1"
                   >
-                    Book Room
-                  </a>
+                    View Details
+                  </Link>
                 </div>
               </div>
             </motion.div>

@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 -z-10">
 
         <Image
-          src="/bg.jpg"
+          src="/bg1.png"
           alt="Heritage Tour & Travels"
           fill
           priority
@@ -68,10 +68,10 @@ export default function HeroSection() {
             transition={{ duration: 0.7 }}
             className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-tight text-white mb-4 drop-shadow-2xl"
           >
-            Experience the
+            Explore Varanasi with
 
             <span className="block mt-2 bg-gradient-to-r from-orange-300 via-orange-400 to-yellow-200 bg-clip-text text-transparent italic">
-              Soul of Banaras
+              Heritage Tour & Travels
             </span>
           </motion.h1>
 

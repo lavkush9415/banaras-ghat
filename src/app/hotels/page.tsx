@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { Star, MapPin, MessageCircle, CheckCircle } from 'lucide-react'
-import { hotels, WHATSAPP_URL } from '@/data/data'
+import { Star, MapPin, CheckCircle } from 'lucide-react'
+import { hotels } from '@/data/data'
+import Link from 'next/link'
 import { FadeIn, StaggerChildren } from '@/components/AnimatedSection'
 import CallbackForm from '@/components/CallbackForm'
 
@@ -75,9 +76,9 @@ export default function HotelsPage() {
                       <span className="text-2xl font-bold text-saffron-600">₹{hotel.pricePerNight.toLocaleString()}</span>
                       <span className="text-gray-400 text-sm ml-1">/night</span>
                     </div>
-                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2.5 rounded-2xl transition-all hover:scale-105 text-sm">
-                      <MessageCircle size={15} /> Book Room
-                    </a>
+                    <Link href={`/hotels/${hotel.slug}`} className="flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-golden-500 text-white font-semibold px-4 py-2.5 rounded-2xl transition-all hover:scale-105 text-sm hover:shadow-warm">
+                      View Details
+                    </Link>
                   </div>
                 </div>
               </div>
