@@ -64,11 +64,11 @@ export default function Navbar() {
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
               <a
-                href="tel:+919415778214"
+                href="tel:+919305756027"
                 className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-saffron-600 transition-colors px-3 py-2"
               >
                 <Phone size={15} />
-                +91 94157 78214
+                +91 93057 56027
               </a>
               <a
                 href={WHATSAPP_URL}
@@ -153,7 +153,7 @@ export default function Navbar() {
 
               <div className="p-5 space-y-3 border-t border-cream-100">
                 <a
-                  href="tel:+919415778214"
+                  href="tel:+919305756027"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl border-2 border-saffron-200 text-saffron-600 font-semibold text-sm hover:bg-saffron-50 transition-colors"
                 >
                   <Phone size={15} />

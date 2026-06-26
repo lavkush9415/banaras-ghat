@@ -13,14 +13,14 @@ const contactInfo = [
   {
     icon: <Phone className="w-6 h-6" />,
     title: 'Call / WhatsApp',
-    details: ['+91 94157 78214', 'Available 9 AM – 9 PM'],
-    action: { label: 'Call Now', href: 'tel:+919415778214' },
+    details: ['+91 93057 56027', 'Available 9 AM – 9 PM'],
+    action: { label: 'Call Now', href: 'tel:+919305756027' },
   },
   {
     icon: <Mail className="w-6 h-6" />,
     title: 'Email Us',
-    details: ['info@banarasghat.com', 'Reply within 2 hours'],
-    action: { label: 'Send Email', href: 'mailto:info@banarasghat.com' },
+    details: ['info.heritagetourandtravels@gmail.com', 'Reply within 2 hours'],
+    action: { label: 'Send Email', href: 'mailto:info.heritagetourandtravels@gmail.com' },
   },
   {
     icon: <MapPin className="w-6 h-6" />,

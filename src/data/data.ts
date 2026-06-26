@@ -1,5 +1,5 @@
 export const WHATSAPP_URL =
-  'https://wa.me/919415778214?text=Hello%20Banaras%20Ghat,%20I%20want%20to%20book%20a%20tour%20package'
+  'https://wa.me/919305756027?text=Hello%20Heritage%20Tour%20and%20Travels,%20I%20want%20to%20book%20a%20tour%20package'
 
 export const stats = [
   { value: '5000+', label: 'Happy Travelers', icon: '😊' },

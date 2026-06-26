@@ -84,22 +84,22 @@ export default function Footer() {
           <div>
             <h4 className="font-playfair font-bold text-gray-800 text-lg mb-5">Contact Us</h4>
             <div className="space-y-4">
-              <a href="tel:+919415778214" className="flex items-start gap-3 group">
+              <a href="tel:+919305756027" className="flex items-start gap-3 group">
                 <div className="w-8 h-8 rounded-full bg-saffron-50 flex items-center justify-center flex-shrink-0 group-hover:bg-saffron-100 transition-colors">
                   <Phone size={14} className="text-saffron-500" />
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 font-medium">Call / WhatsApp</div>
-                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium">+91 94157 78214</div>
+                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium">+91 93057 56027</div>
                 </div>
               </a>
-              <a href="mailto:info@banarasghat.com" className="flex items-start gap-3 group">
+              <a href="mailto:info.heritagetourandtravels@gmail.com" className="flex items-start gap-3 group">
                 <div className="w-8 h-8 rounded-full bg-saffron-50 flex items-center justify-center flex-shrink-0 group-hover:bg-saffron-100 transition-colors">
                   <Mail size={14} className="text-saffron-500" />
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 font-medium">Email</div>
-                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium">info@banarasghat.com</div>
+                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium">info.heritagetourandtravels@gmail.com</div>
                 </div>
               </a>
               <div className="flex items-start gap-3">
@@ -108,7 +108,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 font-medium">Office</div>
-                  <div className="text-sm text-gray-700 font-medium">Dashashwamedh Ghat Road,<br />Varanasi — 221001, UP</div>
+                  <div className="text-sm text-gray-700 font-medium">Shivala Ghat,<br />Varanasi — 221001, UP</div>
                 </div>
               </div>
             </div>
