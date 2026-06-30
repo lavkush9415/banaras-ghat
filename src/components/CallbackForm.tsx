@@ -26,16 +26,57 @@ export default function CallbackForm() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const errs = validate()
-    if (Object.keys(errs).length > 0) { setErrors(errs); return }
-    setLoading(true)
-    await new Promise((r) => setTimeout(r, 1500))
-    setLoading(false)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
-    setForm({ name: '', phone: '', service: '', message: '' })
+  e.preventDefault()
+
+  const errs = validate()
+  if (Object.keys(errs).length > 0) {
+    setErrors(errs)
+    return
   }
+
+  setLoading(true)
+
+  try {
+    const response = await fetch("/api/callback",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        }),
+      }
+    )
+
+    const result = await response.json()
+
+    if (result.success) {
+      setSubmitted(true)
+
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+
+      setForm({
+        name: "",
+        phone: "",
+        service: "",
+        message: "",
+      })
+    } else {
+      alert("Failed to submit form.")
+    }
+  } catch (error) {
+    console.error(error)
+    alert("Something went wrong. Please try again.")
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <section className="section-padding bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
