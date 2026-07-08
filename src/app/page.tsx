@@ -13,7 +13,7 @@ import CallbackForm from '@/components/CallbackForm'
 import InstagramSection from '@/components/home/InstagramSection'
 
 export const metadata: Metadata = {
-  title: 'Heritage Tour & Travels | Spiritual Journeys & Luxury Travel in Varanasi',
+  title: 'Varanasi Heritage Tour & Travels | Spiritual Journeys & Luxury Travel in Varanasi',
   description: 'Experience the soul of Banaras — premium tour packages, Ganga Aarti boat rides, luxury hotels & cab services in Varanasi.',
 }
 

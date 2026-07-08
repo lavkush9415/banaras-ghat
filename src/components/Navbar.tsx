@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navLinks, WHATSAPP_URL } from '@/data/data'
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -29,19 +30,28 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-saffron-400 to-golden-500 flex items-center justify-center shadow-warm">
-                <span className="text-white text-lg">🪔</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-playfair font-bold text-lg text-gray-800 group-hover:text-saffron-600 transition-colors">
-                  Heritage
-                </span>
-                <span className="text-xs font-semibold text-saffron-500 tracking-widest uppercase">
-                  Tour & Travels
-                </span>
-              </div>
-            </Link>
+
+<Link href="/" className="flex items-center gap-3 group">
+<div className="relative w-9 h-9 rounded-full overflow-hidden shadow-warm bg-gradient-to-br from-saffron-400 to-golden-500">
+  <Image
+    src="/logo1.png"
+    alt="Varanasi Heritage Logo"
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
+
+  <div className="flex flex-col leading-none">
+    <span className="font-playfair font-bold text-lg text-gray-800 group-hover:text-saffron-600 transition-colors">
+      Varanasi Heritage
+    </span>
+
+    <span className="text-xs font-semibold text-saffron-500 tracking-widest uppercase">
+      Tour & Travels
+    </span>
+  </div>
+</Link>
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1">
@@ -122,7 +132,7 @@ export default function Navbar() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-saffron-400 to-golden-500 flex items-center justify-center">
                     <span className="text-white text-base">🪔</span>
                   </div>
-                  <span className="font-playfair font-bold text-gray-800">Heritage Tour & Travels</span>
+                  <span className="font-playfair font-bold text-gray-800">Varanasi Heritage Tour & Travels</span>
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}

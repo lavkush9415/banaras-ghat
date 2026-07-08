@@ -9,14 +9,14 @@ import { AnimatedCounter } from './AnimatedCounter'
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
 
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
 
         <Image
           src="/bg1.png"
-          alt="Heritage Tour & Travels"
+          alt="Varanasi Heritage Tour & Travels"
           fill
           priority
           quality={100}
@@ -46,7 +46,7 @@ export default function HeroSection() {
       />
 
       {/* Main Content */}
-      <div className="relative z-10 h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-10 pt-24">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-10 pt-28 pb-32 md:pb-40">
 
         <div className="max-w-4xl mx-auto text-center mt-10">
 
@@ -71,7 +71,7 @@ export default function HeroSection() {
             Explore Varanasi with
 
             <span className="block mt-2 bg-gradient-to-r from-orange-300 via-orange-400 to-yellow-200 bg-clip-text text-transparent italic">
-              Heritage Tour & Travels
+              Varanasi Heritage Tour & Travels
             </span>
           </motion.h1>
 
@@ -92,7 +92,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-3 mb-10"
+            className="flex flex-wrap justify-center gap-3 mb-14"
           >
             <Link
               href="/packages"
@@ -117,7 +117,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-4xl mx-auto mt-2"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mt-10"
           >
             {stats.map((stat) => (
               <motion.div

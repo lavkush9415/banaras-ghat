@@ -5,9 +5,9 @@ import CallbackForm from '@/components/CallbackForm'
 import HotelsClient from './HotelsClient'
 
 export const metadata: Metadata = {
-  title: 'Hotels | Heritage Tour & Travels — Varanasi Hotel Bookings',
+  title: 'Hotels | Varanasi Heritage Tour & Travels — Varanasi Hotel Bookings',
   description:
-    'Book luxury heritage hotels, premium boutique stays, and budget accommodations in Varanasi through Heritage Tour & Travels.',
+    'Book luxury heritage hotels, premium boutique stays, and budget accommodations in Varanasi through Varanasi Heritage Tour & Travels.',
 }
 
 export default function HotelsPage() {

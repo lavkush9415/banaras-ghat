@@ -113,7 +113,7 @@ function RoomCard({ room, hotelName, onOpenLightbox, index }: RoomCardProps) {
   const [activeImg, setActiveImg] = useState(0)
 
   const whatsappMsg = encodeURIComponent(
-    `Hello Heritage Tour and Travels, I'd like to book the ${room.type} at ${hotelName}. Please share availability and pricing.`
+    `Hello Varanasi Heritage Tour and Travels, I'd like to book the ${room.type} at ${hotelName}. Please share availability and pricing.`
   )
   const whatsappLink = `https://wa.me/919305756027?text=${whatsappMsg}`
 

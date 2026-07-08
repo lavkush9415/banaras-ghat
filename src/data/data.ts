@@ -1,5 +1,5 @@
 export const WHATSAPP_URL =
-  'https://wa.me/919305756027?text=Hello%20Heritage%20Tour%20and%20Travels,%20I%20want%20to%20book%20a%20tour%20package'
+  'https://wa.me/919305756027?text=Hello%20Varanasi%20Heritage%20Tour%20and%20Travels,%20I%20want%20to%20book%20a%20tour%20package'
 
 export const stats = [
   { value: '5000+', label: 'Happy Travelers', icon: '😊' },
@@ -287,26 +287,44 @@ export const hotels = [
         price: 2500,
         capacity: '2 Adults',
         description: 'Elegantly appointed deluxe room with river-facing windows, plush bedding, and modern amenities — the perfect retreat after a day exploring the ghats.',
-        images: ['/h1.jpeg', '/h2.jpeg', '/h3.jpeg'],
+        images: ['/deluxeheri.jpeg', '/dh3.jpeg', '/h1.jpeg', '/h2.jpeg', '/h5.jpeg', '/dh6.jpeg'],
         amenities: ['AC', 'TV', 'River View', 'Free WiFi', 'Hot Water'],
       },
       {
-        type: 'Suite',
-        roomType: 'Suites',
+        type: 'Suits Room',
+        roomType: 'Suits',
         price: 4500,
         capacity: '4 Adults',
         description: 'A spacious suite offering a separate living area, a luxurious Jacuzzi, and a private balcony with panoramic Ganga views — pure indulgence.',
-        images: ['/h4.jpeg', '/h5.jpeg', '/h6.jpeg'],
+        images: ['/suits.jpeg', '/suits1.jpeg', '/suits2.jpeg', '/dh2.jpeg'],
         amenities: ['AC', 'Living Room', 'Jacuzzi', 'Ganga View Balcony', 'Room Service'],
       },
       {
-        type: 'Royal Suite',
+        type: 'Super Deluxe Room',
         roomType: 'Super Deluxe',
         price: 7500,
         capacity: '6 Adults',
         description: 'The crown jewel of Varanasi Heritage — a palatial royal suite with a private terrace, dedicated butler, and exclusive ghat access for a truly regal experience.',
-        images: ['/h7.jpeg', '/h8.jpeg', '/h1w.jpeg'],
-        amenities: ['AC', 'Private Terrace', 'Butler Service', 'Private Ghat Access', 'Mini Bar'],
+        images: ['/superdeluxeh.jpeg', '/sdh2.jpeg', '/sdh1.jpeg', '/sdh3.jpeg', '/sdh4.jpeg'],
+        amenities: ['AC', 'Butler Service', 'Private Ghat Access'],
+      },
+      {
+        type: 'Twin Deluxe Room',
+        roomType: 'Twin Deluxe',
+        price: 2500,
+        capacity: '3 Adults',
+        description: 'Perfect for friends or colleagues — two large twin beds, city-view windows, and all modern comforts make this our most popular room for group travellers.',
+        images: ['/dtwinh.jpeg', '/dtwinh1.jpeg', '/dh2.jpeg'],
+        amenities: ['AC', 'TV', 'Twin Beds', 'City View', 'Free WiFi'],
+      },
+      {
+        type: 'Standard Room',
+        roomType: 'Premium',
+        price: 2500,
+        capacity: '2 Adults',
+        description: 'A cosy, well-appointed standard room featuring traditional artwork, comfortable beds, and modern bathroom essentials — ideal for couples and solo travellers.',
+        images: ['/preh.jpeg', '/preh1.jpeg', '/preh2.jpeg', '/preh3.jpeg', '/preh4.jpeg', '/preh5.jpeg', '/preh6.jpeg'],
+        amenities: ['AC', 'TV', 'Attached Bathroom', 'Free WiFi'],
       },
     ],
     policies: {
@@ -429,15 +447,7 @@ export const hotels = [
         images: ['/v5.jpeg', '/v6.jpeg', '/v7.jpeg'],
         amenities: ['AC', 'TV', 'City View', 'Mini Fridge', 'Free WiFi'],
       },
-      {
-        type: 'Twin Deluxe Room',
-        roomType: 'Twin Deluxe',
-        price: 2500,
-        capacity: '3 Adults',
-        description: 'Perfect for friends or colleagues — two large twin beds, city-view windows, and all modern comforts make this our most popular room for group travellers.',
-        images: ['/v8.jpeg', '/v9.jpeg', '/vw.jpeg'],
-        amenities: ['AC', 'TV', 'Twin Beds', 'City View', 'Free WiFi'],
-      },
+      
       {
         type: 'Family Room',
         roomType: 'Super Deluxe',
@@ -482,8 +492,10 @@ export const hotels = [
     coordinates: { lat: 25.2895, lng: 83.0075 },
     amenities: ['Free wifi', 'Ganga view', 'Travel Desk'],
     badge: 'Heritage Stay',
-    description: 'An authentic 200-year-old haveli restored to its former glory, offering a truly immersive Banaras heritage experience.',
-    fullDescription: 'Step back in time at Shivangi Inn, a lovingly restored 200-year-old haveli that transports you to the golden era of Banaras royalty. Every element of this architectural gem tells a story — from the intricately carved wooden doorways and vintage courtyard to the hand-painted murals and antique furniture. The rooftop terrace offers breathtaking views of the Ganga and the city skyline. Participate in private Ganga puja ceremonies, enjoy traditional Banarasi cuisine prepared in the heritage kitchen, and immerse yourself in the timeless charm of old-world Banaras.',
+
+    description: "A premium hotel in Varanasi offering elegant rooms, modern comforts, exceptional hospitality, and convenient access to the city's iconic temples, ghats, and tourist attractions.",
+
+    fullDescription: "Shivangi Inn is a premium hotel in Varanasi designed to provide a perfect blend of comfort, convenience, and warm hospitality. Located close to the city's most popular attractions, including Kashi Vishwanath Temple, Dashashwamedh Ghat, Assi Ghat, and Sarnath, the hotel is an ideal choice for pilgrims, families, business travelers, and tourists. Guests can enjoy spacious air-conditioned rooms, complimentary high-speed Wi-Fi, delicious multi-cuisine dining, 24-hour room service, travel assistance, and professional staff committed to delivering a memorable stay. Whether you are exploring the spiritual heritage of Banaras or visiting for business, Shivangi Inn offers a peaceful and comfortable experience with modern amenities and excellent service.",
     roomTypes: [
       {
         type: 'Heritage Room',
@@ -612,7 +624,7 @@ export const testimonials = [
     city: 'New Delhi',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
     rating: 5,
-    review: 'Our Varanasi trip with Heritage Tour & Travels was absolutely magical! The sunrise boat ride was spiritual beyond words. The team was professional, caring, and made every moment special. Highly recommended!',
+    review: 'Our Varanasi trip with Varanasi Heritage Tour & Travels was absolutely magical! The sunrise boat ride was spiritual beyond words. The team was professional, caring, and made every moment special. Highly recommended!',
     package: 'Divine Kashi Darshan',
     date: 'March 2024',
   },
@@ -622,7 +634,7 @@ export const testimonials = [
     city: 'Mumbai',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
     rating: 5,
-    review: 'Booked the luxury package for our honeymoon and it exceeded all expectations. The heritage hotel, private boat, and candlelit Ganga dinner — pure romance! Heritage Tour & Travels delivered perfection.',
+    review: 'Booked the luxury package for our honeymoon and it exceeded all expectations. The heritage hotel, private boat, and candlelit Ganga dinner — pure romance! Varanasi Heritage Tour & Travels delivered perfection.',
     package: 'Honeymoon in Kashi',
     date: 'February 2024',
   },
@@ -667,7 +679,7 @@ export const faqs = [
   },
   {
     id: 2,
-    question: 'How do I book a tour package with Heritage Tour & Travels?',
+    question: 'How do I book a tour package with Varanasi Heritage Tour & Travels?',
     answer: 'Booking is simple! You can click the WhatsApp button on our website to directly chat with our travel experts, fill out the callback form on the Contact page, or call us directly. We\'ll customize the perfect itinerary based on your preferences and budget.',
   },
   {

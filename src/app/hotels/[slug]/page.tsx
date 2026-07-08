@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const hotel = hotels.find((h) => h.slug === params.slug)
   if (!hotel) return { title: 'Hotel Not Found' }
   return {
-    title: `${hotel.name} | Heritage Tour & Travels — Varanasi Hotel`,
+    title: `${hotel.name} | Varanasi Heritage Tour & Travels — Varanasi Hotel`,
     description: hotel.description,
     openGraph: {
       title: `${hotel.name} — Book in Varanasi`,

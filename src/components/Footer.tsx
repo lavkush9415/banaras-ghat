@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react'
 import { navLinks, WHATSAPP_URL } from '@/data/data'
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -14,10 +15,21 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-saffron-400 to-golden-500 flex items-center justify-center">
-                <span className="text-white text-xl">🪔</span>
+                <div className="relative w-10 h-10 rounded-full overflow-hidden">
+  <Image
+    src="/logo1.png"
+    alt="Varanasi Heritage Logo"
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
               </div>
               <div>
-                <div className="font-playfair font-bold text-xl text-gray-800">Heritage Tour & Travels</div>
+                <div className="font-playfair font-bold text-xl text-gray-800 leading-tight">
+  <div>Varanasi Heritage</div>
+  <div>Tour & Travels</div>
+</div>
                 <div className="text-xs text-saffron-500 font-semibold tracking-widest uppercase">Spiritual Travel</div>
               </div>
             </Link>
@@ -120,7 +132,7 @@ export default function Footer() {
       <div className="border-t border-cream-200 py-5">
         <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Heritage Tour & Travels. All rights reserved. Crafted with 🧡 in Varanasi.
+            © {new Date().getFullYear()} Varanasi Heritage Tour & Travels. All rights reserved. Crafted with 🧡 in Varanasi.
           </p>
           <div className="flex items-center gap-4 text-xs text-gray-400">
             <Link href="#" className="hover:text-saffron-500 transition-colors">Privacy Policy</Link>

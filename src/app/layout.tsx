@@ -21,7 +21,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Heritage Tour & Travels | Spiritual Journeys & Luxury Travel in Varanasi",
+  title: "Varanasi Heritage Tour & Travels | Spiritual Journeys & Luxury Travel in Varanasi",
   description:
     "Experience the soul of Banaras with premium tour packages, sacred Ganga Aarti experiences, luxury boat rides, and curated spiritual journeys.",
 
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Heritage Tour & Travels | Spiritual Journeys & Luxury Travel",
+    title: "Varanasi Heritage Tour & Travels | Spiritual Journeys & Luxury Travel",
     description:
       "Discover the magic of Banaras — Ganga Aarti, sacred ghats, luxury boats, and unforgettable spiritual experiences.",
     type: "website",
