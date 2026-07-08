@@ -6,18 +6,31 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Star, MapPin, Phone, ArrowLeft, Share2, CheckCircle,
-  Clock, Users, Wifi, Tv, Coffee, Car, Snowflake, Dumbbell,
-  Utensils, Shirt, ChevronLeft, ChevronRight, X, ExternalLink,
-  MessageCircle
+  Clock, Users, Wifi, Coffee, Snowflake, Utensils,
+  ChevronLeft, ChevronRight, X, ExternalLink,
+  MessageCircle, Images, Tag, BedDouble,
 } from 'lucide-react'
 import { WHATSAPP_URL } from '@/data/data'
 import { FadeIn, StaggerChildren, childVariants } from '@/components/AnimatedSection'
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+interface RoomType {
+  type: string
+  roomType: string
+  price: number
+  capacity: string
+  description: string
+  images: string[]
+  amenities: string[]
+}
 
 interface Hotel {
   id: number
   slug: string
   name: string
   category: string
+  hotelType?: string
   image: string
   images: string[]
   rating: number
@@ -29,7 +42,7 @@ interface Hotel {
   badge: string
   description: string
   fullDescription: string
-  roomTypes: { type: string; price: number; capacity: string; amenities: string[] }[]
+  roomTypes: RoomType[]
   policies: { checkIn: string; checkOut: string; cancellation: string; payment: string; children: string }
   nearbyAttractions: { name: string; distance: string; type: string }[]
   guestReviews: { name: string; city: string; rating: number; date: string; comment: string }[]
@@ -39,6 +52,8 @@ interface Props {
   hotel: Hotel
   similarHotels: Hotel[]
 }
+
+// ─── Amenity icon lookup ──────────────────────────────────────────────────────
 
 const amenityIcons: Record<string, React.ReactNode> = {
   'Pool': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M2 20c2-2 4-3 6-3s4 1 6 3 4 3 6 3 4-1 6-3" strokeLinecap="round"/><path d="M2 16c2-2 4-3 6-3s4 1 6 3 4 3 6 3 4-1 6-3" strokeLinecap="round" opacity="0.5"/></svg>,
@@ -59,30 +74,296 @@ const amenityIcons: Record<string, React.ReactNode> = {
   'Ganga Puja': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M6 12h12"/></svg>,
 }
 
-function getAmenityIcon(name: string, className = 'w-5 h-5') {
-  const icon = amenityIcons[name]
-  if (icon) return icon
-  return <CheckCircle className={className} />
+function getAmenityIcon(name: string) {
+  return amenityIcons[name] ?? <CheckCircle className="w-5 h-5" />
 }
 
-export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [lightboxIndex, setLightboxIndex] = useState(0)
+// ─── Room type badge colours ──────────────────────────────────────────────────
 
-  const openLightbox = (index: number) => {
-    setLightboxIndex(index)
+const ROOM_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
+  'Luxury':      { bg: 'bg-purple-100',  text: 'text-purple-700' },
+  'Premium':     { bg: 'bg-blue-100',    text: 'text-blue-700' },
+  'Deluxe':      { bg: 'bg-saffron-100', text: 'text-saffron-700' },
+  'Twin Deluxe': { bg: 'bg-golden-100',  text: 'text-golden-700' },
+  'Super Deluxe':{ bg: 'bg-peach-100',   text: 'text-peach-700' },
+  'Suites':      { bg: 'bg-green-100',   text: 'text-green-700' },
+  'Budget':      { bg: 'bg-gray-100',    text: 'text-gray-600' },
+}
+
+function RoomTypeBadge({ roomType }: { roomType: string }) {
+  const colors = ROOM_TYPE_COLORS[roomType] ?? { bg: 'bg-cream-100', text: 'text-gray-600' }
+  return (
+    <span className={`inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}>
+      <Tag size={10} />
+      {roomType}
+    </span>
+  )
+}
+
+// ─── Room Card ───────────────────────────────────────────────────────────────
+
+interface RoomCardProps {
+  room: RoomType
+  hotelName: string
+  onOpenLightbox: (images: string[], index: number) => void
+  index: number
+}
+
+function RoomCard({ room, hotelName, onOpenLightbox, index }: RoomCardProps) {
+  const [activeImg, setActiveImg] = useState(0)
+
+  const whatsappMsg = encodeURIComponent(
+    `Hello Heritage Tour and Travels, I'd like to book the ${room.type} at ${hotelName}. Please share availability and pricing.`
+  )
+  const whatsappLink = `https://wa.me/919305756027?text=${whatsappMsg}`
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-white border border-cream-200 rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-400 group"
+    >
+      <div className="flex flex-col md:flex-row">
+        {/* ── Image panel ── */}
+        <div className="relative md:w-72 lg:w-80 flex-shrink-0">
+          {/* Main image */}
+          <div
+            className="relative h-56 md:h-full min-h-[200px] cursor-pointer overflow-hidden"
+            onClick={() => onOpenLightbox(room.images, activeImg)}
+          >
+            <Image
+              src={room.images[activeImg] ?? room.images[0]}
+              alt={`${room.type} — ${hotelName}`}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 768px) 100vw, 320px"
+            />
+            {/* Dark overlay + "View Gallery" hint */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+            <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+              <Images size={12} />
+              View Gallery
+            </div>
+            {/* Room type badge overlay */}
+            <div className="absolute top-3 left-3">
+              <RoomTypeBadge roomType={room.roomType} />
+            </div>
+          </div>
+
+          {/* Thumbnail strip (only if >1 image) */}
+          {room.images.length > 1 && (
+            <div className="flex gap-1.5 p-2.5 bg-gray-50 overflow-x-auto">
+              {room.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImg(i)}
+                  className={`relative w-14 h-10 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                    i === activeImg
+                      ? 'border-saffron-500 scale-105'
+                      : 'border-transparent opacity-60 hover:opacity-90'
+                  }`}
+                >
+                  <Image src={img} alt="" fill className="object-cover" sizes="56px" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* ── Details panel ── */}
+        <div className="flex flex-col justify-between p-5 md:p-6 flex-1">
+          <div>
+            {/* Header */}
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <div>
+                <h3 className="font-playfair font-bold text-gray-800 text-xl leading-tight">
+                  {room.type}
+                </h3>
+                <div className="flex items-center gap-2 mt-1.5 text-sm text-gray-500">
+                  <BedDouble size={14} className="text-saffron-400" />
+                  <span>{room.capacity}</span>
+                </div>
+              </div>
+              {/* Price */}
+              <div className="text-right flex-shrink-0">
+                <div className="text-2xl font-bold text-saffron-600">
+                  ₹{room.price.toLocaleString()}
+                </div>
+                <div className="text-xs text-gray-400">per night</div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-sm text-gray-600 leading-relaxed mb-4">
+              {room.description}
+            </p>
+
+            {/* Capacity row */}
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-3">
+              <Users size={13} className="text-saffron-400" />
+              <span className="font-medium">Capacity:</span> {room.capacity}
+            </div>
+
+            {/* Amenities */}
+            <div className="flex flex-wrap gap-1.5 mb-5">
+              {room.amenities.map((a) => (
+                <span
+                  key={a}
+                  className="flex items-center gap-1 text-xs bg-saffron-50 text-saffron-700 px-2.5 py-1 rounded-full font-medium"
+                >
+                  <CheckCircle size={10} className="text-saffron-400" />
+                  {a}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-2 pt-4 border-t border-cream-100">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold py-2.5 rounded-2xl transition-all hover:scale-[1.02] shadow-sm"
+            >
+              <MessageCircle size={15} />
+              WhatsApp
+            </a>
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-saffron-500 to-golden-500 text-white text-sm font-semibold py-2.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-warm"
+            >
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Lightbox ────────────────────────────────────────────────────────────────
+
+interface LightboxState {
+  images: string[]
+  index: number
+  label: string
+}
+
+function Lightbox({
+  state,
+  onClose,
+}: {
+  state: LightboxState
+  onClose: () => void
+}) {
+  const [current, setCurrent] = useState(state.index)
+  const prev = () => setCurrent((c) => (c === 0 ? state.images.length - 1 : c - 1))
+  const next = () => setCurrent((c) => (c === state.images.length - 1 ? 0 : c + 1))
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/92 backdrop-blur-sm z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
+      {/* Close */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
+      >
+        <X size={20} />
+      </button>
+
+      {/* Prev */}
+      <button
+        onClick={(e) => { e.stopPropagation(); prev() }}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
+      >
+        <ChevronLeft size={20} />
+      </button>
+
+      {/* Image */}
+      <motion.div
+        key={current}
+        initial={{ scale: 0.88, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-4xl aspect-video mx-14 rounded-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Image
+          src={state.images[current]}
+          alt={`${state.label} ${current + 1}`}
+          fill
+          className="object-contain"
+          sizes="80vw"
+        />
+      </motion.div>
+
+      {/* Next */}
+      <button
+        onClick={(e) => { e.stopPropagation(); next() }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Counter */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+        {current + 1} / {state.images.length}
+      </div>
+
+      {/* Thumbnails */}
+      <div
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 max-w-[90vw] overflow-x-auto px-2"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {state.images.map((img, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`relative w-14 h-10 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+              i === current ? 'border-saffron-500 scale-110' : 'border-white/30 opacity-60 hover:opacity-100'
+            }`}
+          >
+            <Image src={img} alt="" fill className="object-cover" sizes="56px" />
+          </button>
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxState, setLightboxState] = useState<LightboxState>({
+    images: hotel.images,
+    index: 0,
+    label: hotel.name,
+  })
+
+  const openHotelLightbox = (index: number) => {
+    setLightboxState({ images: hotel.images, index, label: hotel.name })
+    setLightboxOpen(true)
+  }
+
+  const openRoomLightbox = (images: string[], index: number) => {
+    setLightboxState({ images, index, label: hotel.name })
     setLightboxOpen(true)
   }
 
   const shareHotel = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: hotel.name,
-          text: hotel.description,
-          url: window.location.href,
-        })
+        await navigator.share({ title: hotel.name, text: hotel.description, url: window.location.href })
       } catch {}
     } else {
       navigator.clipboard.writeText(window.location.href)
@@ -94,7 +375,7 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
     <>
       <section className="pb-20 bg-white">
         <div className="container-custom">
-          {/* Back Button */}
+          {/* Back / Share */}
           <div className="flex items-center justify-between mb-6 pt-4">
             <Link
               href="/hotels"
@@ -112,11 +393,11 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
             </button>
           </div>
 
-          {/* Image Gallery */}
+          {/* ── Hotel Image Gallery ──────────────────────────────────── */}
           <div className="grid md:grid-cols-4 gap-3 mb-10">
             <div
               className="md:col-span-2 md:row-span-2 relative h-64 md:h-[420px] rounded-3xl overflow-hidden cursor-pointer group"
-              onClick={() => openLightbox(0)}
+              onClick={() => openHotelLightbox(0)}
             >
               <Image
                 src={hotel.images[0]}
@@ -135,7 +416,7 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               <div
                 key={i}
                 className="relative h-40 md:h-[200px] rounded-2xl overflow-hidden cursor-pointer group"
-                onClick={() => openLightbox(i + 1)}
+                onClick={() => openHotelLightbox(i + 1)}
               >
                 <Image
                   src={img}
@@ -149,9 +430,9 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
             ))}
           </div>
 
-          {/* Main Content Grid */}
+          {/* ── Main Content Grid ────────────────────────────────────── */}
           <div className="grid lg:grid-cols-3 gap-10">
-            {/* Left Column - Details */}
+            {/* Left Column */}
             <div className="lg:col-span-2 space-y-10">
               {/* Hotel Header */}
               <FadeIn>
@@ -161,7 +442,9 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                       <span className="bg-gradient-to-r from-saffron-500 to-golden-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                         {hotel.badge}
                       </span>
-                      <span className="text-xs text-gray-400 bg-cream-100 px-2.5 py-1 rounded-full">{hotel.category}</span>
+                      <span className="text-xs text-gray-400 bg-cream-100 px-2.5 py-1 rounded-full">
+                        {hotel.category}
+                      </span>
                     </div>
                     <h1 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800">
                       {hotel.name}
@@ -187,16 +470,20 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-saffron-600">₹{hotel.pricePerNight.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-saffron-600">
+                      ₹{hotel.pricePerNight.toLocaleString()}
+                    </div>
                     <div className="text-gray-400 text-sm">per night</div>
                   </div>
                 </div>
               </FadeIn>
 
-              {/* Description */}
+              {/* About */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">About This Hotel</h2>
+                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">
+                    About This Hotel
+                  </h2>
                   <p className="text-gray-600 leading-relaxed">{hotel.fullDescription}</p>
                 </div>
               </FadeIn>
@@ -204,7 +491,9 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               {/* Amenities */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">Amenities & Services</h2>
+                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">
+                    Amenities &amp; Services
+                  </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {hotel.amenities.map((amenity) => (
                       <div
@@ -221,41 +510,27 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                 </div>
               </FadeIn>
 
-              {/* Room Types */}
+              {/* ── Premium Room Cards ───────────────────────────────── */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">Available Room Types</h2>
-                  <div className="space-y-4">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="font-playfair text-2xl font-bold text-gray-800">
+                      Available Room Types
+                    </h2>
+                    <span className="text-xs text-gray-400 bg-cream-100 px-3 py-1.5 rounded-full font-medium">
+                      {hotel.roomTypes.length} room{hotel.roomTypes.length !== 1 ? 's' : ''}
+                    </span>
+                  </div>
+
+                  <div className="space-y-5">
                     {hotel.roomTypes.map((room, i) => (
-                      <motion.div
+                      <RoomCard
                         key={room.type}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="bg-white border border-cream-200 rounded-3xl p-5 hover:shadow-card-hover transition-shadow"
-                      >
-                        <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-                          <div>
-                            <h3 className="font-playfair font-bold text-gray-800 text-lg">{room.type}</h3>
-                            <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
-                              <Users size={14} />
-                              {room.capacity}
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-xl font-bold text-saffron-600">₹{room.price.toLocaleString()}</div>
-                            <div className="text-xs text-gray-400">per night</div>
-                          </div>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {room.amenities.map((a) => (
-                            <span key={a} className="flex items-center gap-1 text-xs bg-saffron-50 text-saffone-700 px-2.5 py-1 rounded-full">
-                              <CheckCircle size={10} className="text-saffron-400" />
-                              {a}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
+                        room={room}
+                        hotelName={hotel.name}
+                        onOpenLightbox={openRoomLightbox}
+                        index={i}
+                      />
                     ))}
                   </div>
                 </div>
@@ -264,13 +539,31 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               {/* Hotel Policies */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">Hotel Policies</h2>
+                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">
+                    Hotel Policies
+                  </h2>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {[
                       { icon: <Clock size={18} />, label: 'Check-In', value: hotel.policies.checkIn },
                       { icon: <Clock size={18} />, label: 'Check-Out', value: hotel.policies.checkOut },
-                      { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]"><path d="M3 10h18"/><path d="M5 6h14"/><path d="M8 14h8"/><path d="M6 18h12"/></svg>, label: 'Cancellation', value: hotel.policies.cancellation },
-                      { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>, label: 'Payment', value: hotel.policies.payment },
+                      {
+                        icon: (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+                            <path d="M3 10h18"/><path d="M5 6h14"/><path d="M8 14h8"/><path d="M6 18h12"/>
+                          </svg>
+                        ),
+                        label: 'Cancellation',
+                        value: hotel.policies.cancellation,
+                      },
+                      {
+                        icon: (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+                            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                          </svg>
+                        ),
+                        label: 'Payment',
+                        value: hotel.policies.payment,
+                      },
                       { icon: <Users size={18} />, label: 'Children', value: hotel.policies.children, className: 'sm:col-span-2' },
                     ].map((policy, i) => (
                       <div key={i} className={`bg-cream-50 rounded-2xl p-4 ${policy.className || ''}`}>
@@ -292,15 +585,26 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               {/* Nearby Attractions */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">Nearby Attractions</h2>
+                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">
+                    Nearby Attractions
+                  </h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {hotel.nearbyAttractions.map((attraction) => (
                       <div key={attraction.name} className="flex items-center gap-3 bg-cream-50 rounded-2xl p-4">
                         <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-saffron-500 flex-shrink-0">
-                          {attraction.type === 'Ghat' ? <MapPin size={18} /> :
-                           attraction.type === 'Temple' ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]"><path d="M4 8h16"/><path d="M8 8v12"/><path d="M16 8v12"/><path d="M6 20h12"/><path d="M12 2l8 6H4z"/></svg> :
-                           attraction.type === 'University' ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.2 2 6 2s6-.9 6-2v-5"/></svg> :
-                           <MapPin size={18} />}
+                          {attraction.type === 'Ghat' ? (
+                            <MapPin size={18} />
+                          ) : attraction.type === 'Temple' ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+                              <path d="M4 8h16"/><path d="M8 8v12"/><path d="M16 8v12"/><path d="M6 20h12"/><path d="M12 2l8 6H4z"/>
+                            </svg>
+                          ) : attraction.type === 'University' ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+                              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.2 2 6 2s6-.9 6-2v-5"/>
+                            </svg>
+                          ) : (
+                            <MapPin size={18} />
+                          )}
                         </div>
                         <div>
                           <div className="font-semibold text-gray-800 text-sm">{attraction.name}</div>
@@ -315,7 +619,9 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               {/* Guest Reviews */}
               <FadeIn>
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">Guest Reviews</h2>
+                  <h2 className="font-playfair text-2xl font-bold text-gray-800 mb-4">
+                    Guest Reviews
+                  </h2>
                   <div className="flex items-center gap-4 mb-6">
                     <div className="flex items-center gap-2">
                       <div className="text-4xl font-bold text-gradient-saffron">{hotel.rating}</div>
@@ -325,7 +631,11 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                             <Star
                               key={i}
                               size={14}
-                              className={i < Math.floor(hotel.rating) ? 'fill-golden-400 text-golden-400' : 'text-gray-300'}
+                              className={
+                                i < Math.floor(hotel.rating)
+                                  ? 'fill-golden-400 text-golden-400'
+                                  : 'text-gray-300'
+                              }
                             />
                           ))}
                         </div>
@@ -345,14 +655,18 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                         <div className="flex items-start justify-between mb-3">
                           <div>
                             <div className="font-semibold text-gray-800">{review.name}</div>
-                            <div className="text-xs text-gray-400">{review.city} · {review.date}</div>
+                            <div className="text-xs text-gray-400">
+                              {review.city} · {review.date}
+                            </div>
                           </div>
                           <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
                             <Star size={12} className="fill-golden-400 text-golden-400" />
                             <span className="text-xs font-bold text-gray-800">{review.rating}</span>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 leading-relaxed italic">&ldquo;{review.comment}&rdquo;</p>
+                        <p className="text-sm text-gray-600 leading-relaxed italic">
+                          &ldquo;{review.comment}&rdquo;
+                        </p>
                       </motion.div>
                     ))}
                   </div>
@@ -360,13 +674,15 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
               </FadeIn>
             </div>
 
-            {/* Right Column - Booking Sidebar */}
+            {/* ── Right Sidebar ─────────────────────────────────────── */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-5">
                 <FadeIn>
                   <div className="bg-white border border-cream-200 rounded-4xl p-6 shadow-card">
                     <div className="text-center mb-6">
-                      <div className="text-3xl font-bold text-saffron-600">₹{hotel.pricePerNight.toLocaleString()}</div>
+                      <div className="text-3xl font-bold text-saffron-600">
+                        ₹{hotel.pricePerNight.toLocaleString()}
+                      </div>
                       <div className="text-gray-400 text-sm">per night</div>
                     </div>
 
@@ -398,18 +714,16 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                     </div>
 
                     <div className="mt-5 pt-5 border-t border-cream-100 space-y-3">
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <CheckCircle size={14} className="text-green-500" />
-                        Free cancellation available
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <CheckCircle size={14} className="text-green-500" />
-                        Best price guaranteed
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <CheckCircle size={14} className="text-green-500" />
-                        Instant confirmation
-                      </div>
+                      {[
+                        'Free cancellation available',
+                        'Best price guaranteed',
+                        'Instant confirmation',
+                      ].map((item) => (
+                        <div key={item} className="flex items-center gap-2 text-sm text-gray-500">
+                          <CheckCircle size={14} className="text-green-500" />
+                          {item}
+                        </div>
+                      ))}
                     </div>
 
                     <div className="mt-5 pt-5 border-t border-cream-100">
@@ -430,14 +744,16 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
             </div>
           </div>
 
-          {/* Similar Hotels */}
+          {/* ── Similar Hotels ───────────────────────────────────────── */}
           {similarHotels.length > 0 && (
             <section className="mt-20 pt-10 border-t border-cream-200">
               <FadeIn className="text-center mb-10">
                 <h2 className="font-playfair text-3xl font-bold text-gray-800">
                   Similar <span className="text-gradient-saffron">Hotels</span>
                 </h2>
-                <p className="text-gray-500 mt-2">Explore more handpicked accommodations in Varanasi</p>
+                <p className="text-gray-500 mt-2">
+                  Explore more handpicked accommodations in Varanasi
+                </p>
               </FadeIn>
 
               <StaggerChildren className="grid md:grid-cols-3 gap-6">
@@ -476,7 +792,10 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
                             <span className="text-xs font-semibold text-gray-800">{h.rating}</span>
                             <span className="text-xs text-gray-400">({h.reviews})</span>
                           </div>
-                          <div className="text-sm font-bold text-saffron-600">₹{h.pricePerNight.toLocaleString()}<span className="text-xs text-gray-400 font-normal">/night</span></div>
+                          <div className="text-sm font-bold text-saffron-600">
+                            ₹{h.pricePerNight.toLocaleString()}
+                            <span className="text-xs text-gray-400 font-normal">/night</span>
+                          </div>
                         </div>
                       </div>
                     </Link>
@@ -488,66 +807,13 @@ export default function HotelDetailsClient({ hotel, similarHotels }: Props) {
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* ── Lightbox ─────────────────────────────────────────────────── */}
       <AnimatePresence>
         {lightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center"
-          >
-            <button
-              onClick={() => setLightboxOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
-            >
-              <X size={20} />
-            </button>
-
-            <button
-              onClick={() => setLightboxIndex((prev) => (prev === 0 ? hotel.images.length - 1 : prev - 1))}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <motion.div
-              key={lightboxIndex}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="relative w-full max-w-4xl aspect-video mx-4 rounded-2xl overflow-hidden"
-            >
-              <Image
-                src={hotel.images[lightboxIndex]}
-                alt={`${hotel.name} ${lightboxIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="80vw"
-              />
-            </motion.div>
-
-            <button
-              onClick={() => setLightboxIndex((prev) => (prev === hotel.images.length - 1 ? 0 : prev + 1))}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors z-10"
-            >
-              <ChevronRight size={20} />
-            </button>
-
-            {/* Thumbnails */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {hotel.images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setLightboxIndex(i)}
-                  className={`relative w-14 h-10 rounded-lg overflow-hidden border-2 transition-all ${
-                    i === lightboxIndex ? 'border-saffron-500 scale-110' : 'border-white/30 opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  <Image src={img} alt="" fill className="object-cover" sizes="56px" />
-                </button>
-              ))}
-            </div>
-          </motion.div>
+          <Lightbox
+            state={lightboxState}
+            onClose={() => setLightboxOpen(false)}
+          />
         )}
       </AnimatePresence>
     </>
