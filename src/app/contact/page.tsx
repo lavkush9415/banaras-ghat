@@ -13,7 +13,8 @@ const contactInfo = [
   {
     icon: <Phone className="w-6 h-6" />,
     title: 'Call / WhatsApp',
-    details: ['+91 93057 56027', 'Available 9 AM – 9 PM'],
+    details: ['+91 93057 56027', 
+      '+917408504481', 'Available 9 AM – 9 PM'],
     action: { label: 'Call Now', href: 'tel:+919305756027' },
   },
   {
@@ -25,8 +26,8 @@ const contactInfo = [
   {
     icon: <MapPin className="w-6 h-6" />,
     title: 'Visit Our Office',
-    details: ['Dashashwamedh Ghat Road', 'Varanasi — 221001, Uttar Pradesh'],
-    action: { label: 'Get Directions', href: 'https://maps.google.com' },
+    details: ['B3/158 Shivala', 'Varanasi — 221001, Uttar Pradesh'],
+    action: { label: 'Get Directions', href: 'https://maps.app.goo.gl/HxyxLrjTdUTv6yry8' },
   },
   {
     icon: <Clock className="w-6 h-6" />,
@@ -57,34 +58,78 @@ export default function ContactPage() {
 
       {/* Contact Cards */}
       <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactInfo.map((info, i) => (
-              <FadeIn key={info.title} delay={i * 0.1}>
-                <div className="bg-white rounded-3xl p-6 shadow-card hover:shadow-warm transition-all duration-300 text-center group h-full flex flex-col">
-                  <div className="w-14 h-14 rounded-2xl bg-saffron-50 text-saffron-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {info.icon}
-                  </div>
-                  <h3 className="font-playfair font-bold text-gray-800 text-lg mb-3">{info.title}</h3>
-                  <div className="flex-1">
-                    {info.details.map((d) => (
-                      <p key={d} className="text-gray-500 text-sm mb-1">{d}</p>
-                    ))}
-                  </div>
-                  {info.action && (
+  <div className="container-custom">
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      {contactInfo.map((info, i) => (
+        <FadeIn key={info.title} delay={i * 0.1}>
+          <div className="bg-white rounded-3xl p-6 shadow-card hover:shadow-warm transition-all duration-300 text-center group h-full flex flex-col">
+            
+            {/* Icon */}
+            <div className="w-14 h-14 rounded-2xl bg-saffron-50 text-saffron-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              {info.icon}
+            </div>
+
+            {/* Title */}
+            <h3 className="font-playfair font-bold text-gray-800 text-lg mb-3">
+              {info.title}
+            </h3>
+
+            {/* Details */}
+            <div className="flex-1 space-y-1">
+              {info.details.map((d, index) => {
+                const isEmail = d.includes("@");
+                const isPhone = /^\+?\d/.test(d);
+
+                if (isEmail) {
+                  return (
                     <a
-                      href={info.action.href}
-                      target={info.action.href.startsWith('http') ? '_blank' : undefined}
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block bg-gradient-to-r from-saffron-500 to-golden-500 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:shadow-warm hover:scale-105 transition-all duration-300"
+                      key={index}
+                      href={`mailto:${d}`}
+                      className="block text-gray-500 text-sm break-all hover:text-saffron-600 transition-colors"
                     >
-                      {info.action.label}
+                      {d}
                     </a>
-                  )}
-                </div>
-              </FadeIn>
-            ))}
+                  );
+                }
+
+                if (isPhone) {
+                  return (
+                    <a
+                      key={index}
+                      href={`tel:${d.replace(/\s+/g, "")}`}
+                      className="block text-gray-500 text-sm hover:text-saffron-600 transition-colors"
+                    >
+                      {d}
+                    </a>
+                  );
+                }
+
+                return (
+                  <p
+                    key={index}
+                    className="text-gray-500 text-sm break-words"
+                  >
+                    {d}
+                  </p>
+                );
+              })}
+            </div>
+
+            {/* Action Button */}
+            {info.action && (
+              <a
+                href={info.action.href}
+                target={info.action.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="mt-4 inline-block bg-gradient-to-r from-saffron-500 to-golden-500 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:shadow-warm hover:scale-105 transition-all duration-300"
+              >
+                {info.action.label}
+              </a>
+            )}
           </div>
+        </FadeIn>
+      ))}
+    </div>
 
           {/* WhatsApp Banner */}
           <FadeIn>

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 const team = [
-  { name: 'Rajesh Kumar Singh', role: 'Founder & CEO', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80', exp: '15 Years' },
+  { name: 'Vikas Kumar Yadav', role: 'Founder & CEO', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80', exp: '15 Years' },
   { name: 'Priya Mishra', role: 'Head of Operations', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80', exp: '10 Years' },
   { name: 'Amit Gupta', role: 'Lead Tour Guide', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80', exp: '12 Years' },
   { name: 'Sunita Sharma', role: 'Customer Experience', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80', exp: '8 Years' },
@@ -52,7 +52,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-card-hover h-80">
                   <Image
-                    src="https://images.unsplash.com/photo-1561361058-c24e019e4c3e?w=800&q=80"
+                    src="/ghats2.jpg"
                     alt="Varanasi Ghats"
                     fill
                     className="object-cover"
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 From Ghat to <span className="text-gradient-saffron">Glory</span>
               </h2>
               <p className="text-gray-500 leading-relaxed mb-4">
-                Founded in 2014 by Rajesh Kumar Singh — a native Banarasi and passionate travel enthusiast — Heritage Tour & Travels started as a small boat tour service at Dashashwamedh Ghat. What began with two boats and a dream has grown into Varanasi&apos;s most trusted multi-service travel company.
+                Founded in 2014 by Vikas Kumar Yadav — a native Banarasi and passionate travel enthusiast — Heritage Tour & Travels started as a small boat tour service at Dashashwamedh Ghat. What began with two boats and a dream has grown into Varanasi&apos;s most trusted multi-service travel company.
               </p>
               <p className="text-gray-500 leading-relaxed mb-6">
                 Today, we serve 5,000+ travelers annually with a comprehensive portfolio including tour packages, luxury boat rides, hotel bookings, cab services, and photography tours. Every experience we offer is infused with our deep respect for Banaras&apos;s spiritual heritage.

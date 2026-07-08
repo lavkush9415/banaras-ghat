@@ -69,7 +69,7 @@ export default function Footer() {
           <div>
             <h4 className="font-playfair font-bold text-gray-800 text-lg mb-5">Our Services</h4>
             <ul className="space-y-2.5">
-              {['Tour Packages', 'Ganga Aarti Tours', 'Sunrise Boat Rides', 'Luxury Hotels', 'Airport Cabs', 'Heritage Walks', 'Photography Tours', 'Honeymoon Packages'].map((service) => (
+              {['Tour Packages', 'Ganga Aarti Tours', 'Sunrise Boat Rides', 'Luxury Hotels', 'Airport Cabs', 'Heritage Walks', 'Photography Tours'].map((service) => (
                 <li key={service}>
                   <span className="text-sm text-gray-500 flex items-center gap-2 group cursor-default">
                     <span className="w-1 h-1 rounded-full bg-saffron-300" />
