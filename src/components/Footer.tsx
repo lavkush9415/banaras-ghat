@@ -120,7 +120,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 font-medium">Office</div>
-                  <div className="text-sm text-gray-700 font-medium">Shivala Ghat,<br />Varanasi — 221001, UP</div>
+                  <div className="text-sm text-gray-700 font-medium">B2/50A, Bhadaini, Tulsi Ghat, Assi Rd,<br /> Varanasi, 221001, UP</div>
                 </div>
               </div>
             </div>
