@@ -17,7 +17,7 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-saffron-400 to-golden-500 flex items-center justify-center">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden">
   <Image
-    src="/logo1.png"
+    src="/logo2.png"
     alt="Varanasi Heritage Logo"
     fill
     className="object-cover"

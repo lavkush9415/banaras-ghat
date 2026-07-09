@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Experience the soul of Banaras with premium tour packages, sacred Ganga Aarti experiences, luxury boat rides, and curated spiritual journeys.",
 
   icons: {
-    icon: "/favicon.png",
+    icon: "/logo2.png",
   },
 
   openGraph: {

@@ -34,7 +34,7 @@ export default function Navbar() {
 <Link href="/" className="flex items-center gap-3 group">
 <div className="relative w-9 h-9 rounded-full overflow-hidden shadow-warm bg-gradient-to-br from-saffron-400 to-golden-500">
   <Image
-    src="/logo1.png"
+    src="/logo2.png"
     alt="Varanasi Heritage Logo"
     fill
     className="object-cover"
