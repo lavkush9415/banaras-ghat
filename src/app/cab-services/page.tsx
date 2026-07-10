@@ -20,7 +20,7 @@ const benefits = [
 export default function CabServicesPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-50 via-cream-50 to-saffron-50 overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 bg-gradient-to-br from-slate-50 via-cream-50 to-saffron-50 overflow-hidden">
         <div className="container-custom">
           <FadeIn className="text-center max-w-2xl mx-auto">
             <span className="section-badge mb-5"><span>🚗</span> Cab Services</span>

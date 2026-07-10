@@ -28,7 +28,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50 overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50 overflow-hidden">
         <div className="absolute top-20 right-10 w-80 h-80 rounded-full bg-saffron-100/50 blur-3xl" />
         <div className="container-custom">
           <FadeIn className="text-center max-w-3xl mx-auto">

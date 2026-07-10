@@ -14,7 +14,7 @@ export default function BoatRidesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-saffron-50 to-golden-50 overflow-hidden">
+      <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 bg-gradient-to-br from-blue-50 via-saffron-50 to-golden-50 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80" alt="bg" fill className="object-cover" sizes="100vw" />
         </div>

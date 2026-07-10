@@ -296,7 +296,7 @@ export const hotels = [
         price: 4500,
         capacity: '4 Adults',
         description: 'A spacious suite offering a separate living area, a luxurious Jacuzzi, and a private balcony with panoramic Ganga views — pure indulgence.',
-        images: ['/suits.jpeg', '/suits1.jpeg', '/suits2.jpeg', '/dh2.jpeg'],
+        images: ['/suits.jpeg', '/suits1.jpeg', '/dh2.jpeg'],
         amenities: ['AC', 'Living Room', 'Jacuzzi', 'Ganga View Balcony', 'Room Service'],
       },
       {

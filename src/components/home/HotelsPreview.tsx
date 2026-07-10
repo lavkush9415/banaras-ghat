@@ -41,7 +41,7 @@ export default function HotelsPreview() {
                   alt={hotel.name}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  sizes="25vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute top-3 left-3">
@@ -57,12 +57,12 @@ export default function HotelsPreview() {
               </div>
 
               <div className="p-5">
-                <h3 className="font-playfair font-bold text-gray-800 leading-snug group-hover:text-saffron-600 transition-colors mb-1">
+                <h3 className="font-playfair font-bold text-gray-800 leading-snug group-hover:text-saffron-600 transition-colors mb-1 break-words">
                   {hotel.name}
                 </h3>
                 <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-3">
-                  <MapPin size={11} className="text-saffron-400" />
-                  {hotel.location}
+                  <MapPin size={11} className="text-saffron-400 flex-shrink-0" />
+                  <span className="truncate">{hotel.location}</span>
                 </div>
                 <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2">{hotel.description}</p>
 

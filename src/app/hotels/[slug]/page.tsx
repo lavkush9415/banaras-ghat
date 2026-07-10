@@ -35,7 +35,7 @@ export default function HotelDetailsPage({ params }: Props) {
   return (
     <>
       {/* Breadcrumb */}
-      <section className="pt-28 pb-4 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
+      <section className="pt-20 md:pt-24 lg:pt-28 pb-4 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
         <div className="container-custom">
           <nav className="flex items-center gap-2 text-xs md:text-sm text-gray-500">
             <a href="/" className="hover:text-saffron-600 transition-colors">Home</a>

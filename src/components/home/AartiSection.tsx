@@ -11,41 +11,42 @@ export default function AartiSection() {
   return (
     <section className="section-padding bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Images */}
           <FadeIn direction="left" className="relative">
-            <div className="relative h-[480px]">
+            {/* On mobile: two stacked images; on lg: absolute layered layout */}
+            <div className="relative h-[360px] sm:h-[420px] lg:h-[480px] w-full">
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="absolute top-0 left-0 w-4/5 h-72 rounded-3xl overflow-hidden shadow-card-hover"
+                className="absolute top-0 left-0 w-4/5 h-[220px] sm:h-64 lg:h-72 rounded-3xl overflow-hidden shadow-card-hover"
               >
                 <Image
                   src="/gangaaarti.png"
                   alt="Ganga Aarti Ceremony"
                   fill
                   className="object-cover"
-                  sizes="50vw"
+                  sizes="(max-width: 1024px) 80vw, 40vw"
                 />
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="absolute bottom-0 right-0 w-3/5 h-64 rounded-3xl overflow-hidden shadow-card-hover border-4 border-white"
+                className="absolute bottom-0 right-0 w-3/5 h-[200px] sm:h-56 lg:h-64 rounded-3xl overflow-hidden shadow-card-hover border-4 border-white"
               >
                 <Image
                   src="/gangaaarti1.jpg"
                   alt="Evening Aarti at Varanasi Ghat"
                   fill
                   className="object-cover"
-                  sizes="40vw"
+                  sizes="(max-width: 1024px) 60vw, 30vw"
                 />
               </motion.div>
               {/* Floating badge */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute top-1/2 right-4 bg-white rounded-2xl shadow-warm p-4 text-center"
+                className="absolute top-1/2 right-2 sm:right-4 bg-white rounded-2xl shadow-warm p-3 sm:p-4 text-center z-10"
               >
-                <div className="text-3xl mb-1">🪔</div>
+                <div className="text-2xl sm:text-3xl mb-1">🪔</div>
                 <div className="text-xs font-bold text-gray-800">Daily Aarti</div>
                 <div className="text-xs text-saffron-500 font-semibold">6:45 PM</div>
               </motion.div>

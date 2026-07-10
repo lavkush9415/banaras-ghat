@@ -41,7 +41,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
+      <section className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-16 bg-gradient-to-br from-saffron-50 via-cream-50 to-golden-50">
         <div className="container-custom">
           <FadeIn className="text-center max-w-2xl mx-auto">
             <span className="section-badge mb-5"><span>📞</span> Contact Us</span>

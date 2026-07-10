@@ -3,7 +3,7 @@ import { ArrowLeft, SearchX } from 'lucide-react'
 
 export default function HotelNotFound() {
   return (
-    <section className="pt-32 pb-20 bg-white">
+    <section className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20 bg-white">
       <div className="container-custom">
         <div className="max-w-md mx-auto text-center">
           <div className="w-20 h-20 rounded-full bg-saffron-50 flex items-center justify-center mx-auto mb-6">

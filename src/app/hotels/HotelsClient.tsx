@@ -95,7 +95,7 @@ export default function HotelsClient({ hotels }: Props) {
   return (
     <>
       {/* ── Filter Bar ─────────────────────────────────────────────── */}
-      <div className="relative flex items-center gap-1 mt-8 px-2">
+      <div className="relative flex items-center gap-1 mt-8 px-0 sm:px-2">
         {/* Left arrow — mobile only */}
         <button
           onClick={() => scrollFilters('left')}
@@ -108,7 +108,7 @@ export default function HotelsClient({ hotels }: Props) {
         {/* Scrollable pill row */}
         <div
           ref={scrollRef}
-          className="flex gap-2 overflow-x-auto pb-1 scroll-smooth"
+          className="flex gap-2 overflow-x-auto pb-1 scroll-smooth min-w-0 flex-1"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {FILTER_CATEGORIES.map((cat) => {
@@ -118,7 +118,7 @@ export default function HotelsClient({ hotels }: Props) {
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
                 whileTap={{ scale: 0.94 }}
-                className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
+                className={`flex-shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
                   isActive
                     ? 'bg-gradient-to-r from-saffron-500 to-golden-500 text-white shadow-warm'
                     : 'bg-white text-gray-600 hover:text-saffron-600 shadow-soft hover:shadow-warm hover:scale-[1.03]'
@@ -150,7 +150,7 @@ export default function HotelsClient({ hotels }: Props) {
       {/* ── Hotel Grid ─────────────────────────────────────────────── */}
       <motion.div
         layout
-        className="grid md:grid-cols-2 gap-8 mt-8"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8"
       >
         <AnimatePresence mode="popLayout">
           {filtered.length > 0 ? (
@@ -162,68 +162,83 @@ export default function HotelsClient({ hotels }: Props) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-white rounded-4xl overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-500 group flex flex-col md:flex-row"
+                className="bg-white rounded-4xl overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-500 group flex flex-col sm:flex-row"
               >
                 {/* Image */}
-                <div className="relative md:w-56 h-52 md:h-auto flex-shrink-0 overflow-hidden">
-                  <Image
-                    src={hotel.image}
-                    alt={hotel.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    sizes="(max-width: 768px) 100vw, 224px"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="bg-white/90 text-saffron-600 text-xs font-bold px-2.5 py-1 rounded-full">
-                      {hotel.badge}
-                    </span>
-                  </div>
-                  {/* Hotel type chip */}
-                  <div className="absolute bottom-3 left-3">
-                    <span className="bg-black/50 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                      {hotel.hotelType}
-                    </span>
+                <div className="relative w-full sm:w-44 md:w-48 lg:w-56 flex-shrink-0 overflow-hidden">
+                  {/* Fixed aspect ratio on mobile, full height on sm+ */}
+                  <div className="relative aspect-[16/9] sm:aspect-auto sm:h-full min-h-[180px]">
+                    <Image
+                      src={hotel.image}
+                      alt={hotel.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 176px, (max-width: 1024px) 192px, 224px"
+                    />
+                    {/* Badge — top left, always inside overflow-hidden parent */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="bg-white/90 text-saffron-600 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                        {hotel.badge}
+                      </span>
+                    </div>
+                    {/* Hotel type chip — bottom left */}
+                    <div className="absolute bottom-3 left-3 z-10">
+                      <span className="bg-black/50 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                        {hotel.hotelType}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex flex-col justify-between flex-1">
-                  <div>
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-playfair font-bold text-gray-800 text-xl group-hover:text-saffron-600 transition-colors">
+                <div className="p-4 sm:p-5 lg:p-6 flex flex-col justify-between flex-1 min-w-0">
+                  <div className="min-w-0">
+                    {/* Hotel name + star rating */}
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-playfair font-bold text-gray-800 text-lg sm:text-xl group-hover:text-saffron-600 transition-colors min-w-0 break-words leading-tight">
                         {hotel.name}
                       </h3>
-                      <div className="flex items-center gap-1 flex-shrink-0 ml-2 bg-golden-50 px-2 py-1 rounded-lg">
+                      <div className="flex items-center gap-1 flex-shrink-0 bg-golden-50 px-2 py-1 rounded-lg">
                         <Star size={13} className="fill-golden-400 text-golden-400" />
                         <span className="text-sm font-bold text-gray-800">{hotel.rating}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-3">
-                      <MapPin size={11} className="text-saffron-400" />
-                      {hotel.location}
+
+                    {/* Location */}
+                    <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-2 sm:mb-3">
+                      <MapPin size={11} className="text-saffron-400 flex-shrink-0" />
+                      <span className="truncate">{hotel.location}</span>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed mb-3">{hotel.description}</p>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-500 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-3">
+                      {hotel.description}
+                    </p>
+
+                    {/* Amenity tags */}
                     <div className="flex flex-wrap gap-1.5">
-                      {hotel.amenities.map((a) => (
+                      {hotel.amenities.slice(0, 4).map((a) => (
                         <span
                           key={a}
                           className="flex items-center gap-1 text-xs bg-cream-50 text-gray-600 px-2.5 py-1 rounded-full"
                         >
-                          <CheckCircle size={10} className="text-saffron-400" /> {a}
+                          <CheckCircle size={10} className="text-saffron-400 flex-shrink-0" /> {a}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-cream-100">
+
+                  {/* Price + CTA */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-cream-100">
                     <div>
-                      <span className="text-2xl font-bold text-saffron-600">
+                      <span className="text-xl sm:text-2xl font-bold text-saffron-600">
                         ₹{hotel.pricePerNight.toLocaleString()}
                       </span>
                       <span className="text-gray-400 text-sm ml-1">/night</span>
                     </div>
                     <Link
                       href={`/hotels/${hotel.slug}`}
-                      className="flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-golden-500 text-white font-semibold px-4 py-2.5 rounded-2xl transition-all hover:scale-105 text-sm hover:shadow-warm"
+                      className="flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-golden-500 text-white font-semibold px-4 py-2.5 rounded-2xl transition-all hover:scale-105 text-sm hover:shadow-warm whitespace-nowrap"
                     >
                       View Details
                     </Link>
@@ -239,7 +254,7 @@ export default function HotelsClient({ hotels }: Props) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="md:col-span-2 flex flex-col items-center justify-center py-20 text-center"
+              className="col-span-full flex flex-col items-center justify-center py-20 text-center"
             >
               <div className="text-5xl mb-4">🏨</div>
               <h3 className="font-playfair text-2xl font-bold text-gray-700 mb-2">

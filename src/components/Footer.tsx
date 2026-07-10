@@ -111,7 +111,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <div className="text-xs text-gray-400 font-medium">Email</div>
-                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium">info.heritagetourandtravels@gmail.com</div>
+                  <div className="text-sm text-gray-700 group-hover:text-saffron-600 transition-colors font-medium break-all">info.heritagetourandtravels@gmail.com</div>
                 </div>
               </a>
               <div className="flex items-start gap-3">
