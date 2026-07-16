@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -101,12 +102,16 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-  card: "summary_large_image",
-  title: "Varanasi Heritage Tour & Travels | Hotel Booking, Boat Ride & Tour Packages",
-  description:
-    "Book hotels, boat rides, cab services and customized Varanasi tour packages.",
-  images: ["/og.png"],
-},
+    card: "summary_large_image",
+
+    title:
+      "Varanasi Heritage Tour & Travels | Hotel Booking, Boat Ride & Tour Packages",
+
+    description:
+      "Book hotels, boat rides, cab services and customized Varanasi tour packages.",
+
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
@@ -117,25 +122,46 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
+
     name: "Varanasi Heritage Tour & Travels",
+
     url: "https://varanasiheritagetourandtravels.com",
+
     logo: "https://varanasiheritagetourandtravels.com/logo2.png",
+
     image: "https://varanasiheritagetourandtravels.com/og.png",
+
     telephone: "+91-9305756027",
+
     email: "info.heritagetourandtravels@gmail.com",
+
+    priceRange: "₹₹",
+
+    currenciesAccepted: "INR",
+
+    paymentAccepted: [
+      "Cash",
+      "UPI",
+      "Credit Card",
+      "Debit Card",
+    ],
+
     address: {
       "@type": "PostalAddress",
-      addressLocality: "B2/50A, Bhadaini, Tulsi Ghat, Assi Rd, Varanasi",
+      streetAddress: "B2/50A, Bhadaini, Tulsi Ghat, Assi Rd",
+      addressLocality: "Varanasi",
       addressRegion: "Uttar Pradesh",
       postalCode: "221001",
       addressCountry: "IN",
     },
+
     areaServed: [
       "Varanasi",
       "Sarnath",
       "Prayagraj",
       "Ayodhya",
     ],
+
     sameAs: [
       "https://www.instagram.com/",
       "https://www.facebook.com/",
@@ -162,6 +188,8 @@ export default function RootLayout({
         <Footer />
 
         <WhatsAppButton />
+
+        <GoogleAnalytics gaId="G-YB69YBMD90" />
       </body>
     </html>
   );
