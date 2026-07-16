@@ -122,7 +122,7 @@ export default function RootLayout({
     logo: "https://varanasiheritagetourandtravels.com/logo2.png",
     image: "https://varanasiheritagetourandtravels.com/og-image.jpg",
     telephone: "+91-9305756027",
-    email: "glctechsolutions94@gmail.com",
+    email: "info.heritagetourandtravels@gmail.com",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Varanasi",
