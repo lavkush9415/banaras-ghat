@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 const team = [
-  { name: 'Vikas Kumar Yadav', role: 'Founder & CEO', image: '/vikas.jpeg', exp: '15 Years' },
+  { name: 'Vikas Yadav', role: 'Founder & CEO', image: '/vikas.jpeg', exp: '15 Years' },
   { name: 'Chanchal Yadav', role: 'Head of Operations', image: '/chanchal.jpeg', exp: '10 Years' },
   { name: 'Amit Gupta', role: 'Lead Tour Guide', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80', exp: '12 Years' },
   { name: 'Pratima Yadav', role: 'Customer Experience', image: '/cx.jpeg', exp: '8 Years' },
